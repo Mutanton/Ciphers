@@ -1,3 +1,5 @@
+package Ciphers
+
 case class CeasarCipher(sentence: String, wordDatabase: Vector[String]) {
     var rawData: String = sentence.toLowerCase()
     
@@ -25,14 +27,4 @@ case class CeasarCipher(sentence: String, wordDatabase: Vector[String]) {
             if wordDatabase.contains(shiftedWords(0)) then
                 guesses += possibleSolution
         guesses.toVector      
-}
-
-@main def main(): Unit = {
-    import scala.io.StdIn.readLine
-    val data = Vector("hello", "lol", "hey", "the", "cat", "more", "i", "can", "would", "you", "me", "because", "he", "she", "how", "do", "please")
-    val cipher = CeasarCipher(readLine, data)
-    val krypterat = cipher.encryptRandom()
-    println(krypterat)
-    println(cipher.decrypt())
-
 }
