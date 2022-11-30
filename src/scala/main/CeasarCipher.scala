@@ -1,7 +1,7 @@
 package Ciphers
 
-case class CeasarCipher(sentence: String, wordDatabase: Vector[String]) {
-    var rawData: String = sentence.toLowerCase()
+case class CeasarCipher(originalSentence: String, wordDatabase: Vector[String]) {
+    var rawData: String = originalSentence.toLowerCase()
     
 
     def ciphShift(shiftNum: Int, data: String = rawData): String =
