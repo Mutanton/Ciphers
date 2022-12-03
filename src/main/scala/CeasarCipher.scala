@@ -1,30 +1,23 @@
-package Ciphers
+package ciphers
 
-case class CeasarCipher(originalSentence: String, wordDatabase: Vector[String]) {
-    var rawData: String = originalSentence.toLowerCase()
-    
+case class CeasarCipher(input: String, wordDatabase: Vector[String]) {
+    import scala.collection.mutable.Buffer
 
-    def ciphShift(shiftNum: Int, data: String = rawData): String =
-        data.map(letter => 
-            if letter != ' ' && letter != '.' then
-                (((letter.toInt-97 + shiftNum) % 26)+97).toChar
-            else letter  
-        ).toString
+    val data: Sentence = Sentence(input.toLowerCase())
+    val guesses: Buffer[String] = Buffer.empty[String]
 
-    def encrypt(shiftNum: Int, data: String = rawData): String = 
-        ciphShift(shiftNum, data)
+    def encrypt(shiftNum: Int): Unit = 
+        data.shiftSentence(shiftNum)
 
-    def encryptRandom(data: String = rawData): String =
+    def encryptRandom(): Unit =
         import scala.util.Random.nextInt
-        ciphShift(nextInt(25)+1, data)
+        data.shiftSentence(nextInt(28)+1)
 
-    def decrypt(data: String = rawData): Vector[String] =
-        import scala.collection.mutable.Buffer
-        var guesses: Buffer[String] = Buffer.empty[String]
-        for i <- 1 to 25 do
-            var possibleSolution = ciphShift(i, data)
+    def decrypt(): Unit =
+        for i <- 1 to 28 do
+            data.shiftSentence(1)
+            var possibleSolution = data.toString
             var shiftedWords = possibleSolution.split(" ")
             if wordDatabase.contains(shiftedWords(0)) then
                 guesses += possibleSolution
-        guesses.toVector      
 }

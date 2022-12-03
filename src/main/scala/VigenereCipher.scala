@@ -1,4 +1,4 @@
-package Ciphers
+package ciphers
 
 case class VigenereCipher() {
     

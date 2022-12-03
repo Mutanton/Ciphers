@@ -1,4 +1,4 @@
-package Ciphers
+package ciphers
 
 @main def main(): Unit = {
     import scala.io.StdIn.readLine
