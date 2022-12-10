@@ -1,9 +1,9 @@
 # Ciphers
-_ _A library for encrypting and decrypting diffrent ciphers_ _
+_A library for encrypting and decrypting diffrent ciphers_
 
 ## Ceasar cipher
 Encrypt and decrypt ceasar ciphers
 
 ## Vigenere cipher
-_ _work in progress_ _
+_work in progress_
 
