@@ -2,16 +2,16 @@ package ciphers
 
 class VigenereCipher() {
 
-    def generateTable() =
+    private def generateTable() =
         var first = true
         import scala.collection.mutable.Buffer
         var alphabetRow = Letter.alphabet.toBuffer
 
         def shiftAlphabet(): Buffer[Char] =
             if !first then
-                var tempLetter = alphabetRow.last
+                var tempLetter = alphabetRow(0)
                 alphabetRow -= tempLetter
-                alphabetRow.prepend(tempLetter)
+                alphabetRow.append(tempLetter)
                 alphabetRow
             else 
                 first = false
