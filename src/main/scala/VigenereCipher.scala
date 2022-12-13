@@ -28,13 +28,22 @@ class VigenereCipher() {
     def encrypt(message: String, key: String): String =
         val result = StringBuilder(message.length())
         message.indices.foreach(messageIndex => 
-            var keyPartIndex = messageIndex % key.length()
+            var keyPartIndex: Int = messageIndex % key.length()
             result += getEncryptedChar(message(messageIndex), key(keyPartIndex))
         )
         result.toString
 
-    def decrypt(encryptedMessage: String, key: String): Unit =
+    def encryptRandom(): (String, String) =
         ???
+
+    def decrypt(encryptedMessage: String, key: String): String =
+        val result = StringBuilder(encryptedMessage.length())
+        encryptedMessage.indices.foreach(messageIndex =>
+            var keyPartIndex: Int = messageIndex % key.length()
+            var rowIndex: Int = vigenereTable(key(keyPartIndex).toLetter().position()).indexOf(encryptedMessage(messageIndex))
+            result += vigenereTable(0)(rowIndex)
+        )
+        result.toString
 
 
     override def toString(): String =
