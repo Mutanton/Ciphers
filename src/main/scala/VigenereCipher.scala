@@ -28,7 +28,7 @@ class VigenereCipher() {
     def encrypt(message: String, key: String): String =
         val result = StringBuilder(message.length())
         message.indices.foreach(messageIndex => 
-            var keyPartIndex = if key.indices.last != 0 then messageIndex % key.indices.last else 0
+            var keyPartIndex = messageIndex % key.length()
             result += getEncryptedChar(message(messageIndex), key(keyPartIndex))
         )
         result.toString
