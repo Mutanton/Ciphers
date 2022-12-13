@@ -2,7 +2,7 @@ package ciphers
 
 class VigenereCipher() {
 
-    private def generateTable() =
+    private def generateTable(): Vector[Vector[Char]] =
         var first = true
         import scala.collection.mutable.Buffer
         var alphabetRow = Letter.alphabet.toBuffer
@@ -17,8 +17,8 @@ class VigenereCipher() {
                 first = false
                 alphabetRow
 
-        var table: Vector[Vector[Char]] = Vector.fill(alphabetRow.size)(shiftAlphabet().toVector)    
-        table
+        Vector.fill(alphabetRow.size)(shiftAlphabet().toVector)    
+
 
     lazy val vigenereTable: Vector[Vector[Char]] = generateTable()
     
@@ -33,8 +33,17 @@ class VigenereCipher() {
         )
         result.toString
 
-    def encryptRandom(): (String, String) =
+    def keyRandomizer(): String =
         ???
+
+    def encryptRandom(message: String): (String, String) =
+        val key = keyRandomizer()
+        val result = StringBuilder(message.length())
+        message.indices.foreach(messageIndex => 
+            var keyPartIndex: Int = messageIndex % key.length()
+            result += getEncryptedChar(message(messageIndex), key(keyPartIndex))
+        )
+        (key, result.toString)
 
     def decrypt(encryptedMessage: String, key: String): String =
         val result = StringBuilder(encryptedMessage.length())

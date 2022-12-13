@@ -9,6 +9,10 @@ class Letter(input: Char) {
             value = alphabet((alphabet.indexOf(value) + shiftNum) % 29)
 
     def position(): Int = alphabet.indexOf(value)
+
+    def +(other: Letter): Sentence =
+        Sentece(this.value + other.value)
+
 }
 
 object Letter {
