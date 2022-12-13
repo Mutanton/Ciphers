@@ -7,6 +7,8 @@ class Letter(input: Char) {
     def shiftLetter(shiftNum: Int): Unit =
         if value != ' ' then
             value = alphabet((alphabet.indexOf(value) + shiftNum) % 29)
+
+    def position(): Int = alphabet.indexOf(value)
 }
 
 object Letter {

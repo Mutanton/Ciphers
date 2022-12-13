@@ -19,8 +19,23 @@ class VigenereCipher() {
 
         var table: Vector[Vector[Char]] = Vector.fill(alphabetRow.size)(shiftAlphabet().toVector)    
         table
-        
+
     lazy val vigenereTable: Vector[Vector[Char]] = generateTable()
+    
+    def getEncryptedChar(unencryptedChar: Char, key: Char): Char =
+        vigenereTable(key.toLetter().position())(unencryptedChar.toLetter().position())
+
+    def encrypt(message: String, key: String): String =
+        val result = StringBuilder(message.length())
+        message.indices.foreach(messageIndex => 
+            var keyPartIndex = if key.indices.last != 0 then messageIndex % key.indices.last else 0
+            result += getEncryptedChar(message(messageIndex), key(keyPartIndex))
+        )
+        result.toString
+
+    def decrypt(): Unit =
+        ???
+
 
     override def toString(): String =
         var result = ""
