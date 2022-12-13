@@ -33,7 +33,7 @@ class VigenereCipher() {
         )
         result.toString
 
-    def decrypt(): Unit =
+    def decrypt(encryptedMessage: String, key: String): Unit =
         ???
 
 

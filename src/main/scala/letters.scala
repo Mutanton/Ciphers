@@ -2,7 +2,7 @@ package ciphers
 
 class Letter(input: Char) {
     import Letter.*
-    var value = input
+    var value = input.toLower
 
     def shiftLetter(shiftNum: Int): Unit =
         if value != ' ' then
