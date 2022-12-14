@@ -11,15 +11,14 @@ class Letter(input: Char) {
     def position(): Int = alphabet.indexOf(value)
 
     def +(other: Letter): Sentence =
-        Sentece(this.value + other.value)
+        Sentence(this.value + other.value.toString)
 
 }
 
 object Letter {
     import scala.util.Random.nextInt
-    def random(): Letter = alphabet(nextInt(alphabet.length))
-
     val alphabet: Vector[Char] = Vector('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'å', 'ä', 'ö')
+    def random(): Letter = Letter(alphabet(nextInt(alphabet.length)))
 }
 
 class Sentence(input: String) {

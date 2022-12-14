@@ -28,16 +28,22 @@ class VigenereCipher() {
     def encrypt(message: String, key: String): String =
         val result = StringBuilder(message.length())
         message.indices.foreach(messageIndex => 
-            var keyPartIndex: Int = messageIndex % key.length()
-            result += getEncryptedChar(message(messageIndex), key(keyPartIndex))
+            if message(messageIndex) != ' ' then
+                var keyPartIndex: Int = messageIndex % key.length()
+                result += getEncryptedChar(message(messageIndex), key(keyPartIndex))
+            else result += ' '
         )
         result.toString
 
-    def keyRandomizer(): String =
-        ???
+    def keyRandomizer(messageLength: Int): String =
+        val finalKey = StringBuilder(messageLength)
+        for i <- 1 to messageLength do
+            finalKey += Letter.random().value
+        finalKey.toString
+
 
     def encryptRandom(message: String): (String, String) =
-        val key = keyRandomizer()
+        val key = keyRandomizer(message.length())
         val result = StringBuilder(message.length())
         message.indices.foreach(messageIndex => 
             var keyPartIndex: Int = messageIndex % key.length()

@@ -5,5 +5,5 @@ _A library for encrypting and decrypting diffrent ciphers_
 Encrypt and decrypt ceasar ciphers
 
 ## Vigenere cipher
-_work in progress_
+Encrypt and decrypt vigenere ciphers
 
