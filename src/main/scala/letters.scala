@@ -30,11 +30,11 @@ class Sentence(input: String) {
         )
 
     override def toString(): String =
-        var result: String = ""
+        val result = StringBuilder()
         sentence.foreach(letter =>
             result += letter.value.toString
         )
-        result
+        result.toString
 }
 
 extension (c: Char) {
